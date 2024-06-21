@@ -1,0 +1,48 @@
+<div class="container mt-5">
+  <% if @user %>
+    <div class="row">
+      <div class="col-md-6">
+        <h1><%= @user.name %>'s Profile</h1>
+        <p><strong>Email:</strong> <%= @user.email %></p>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <h2>Posts</h2>
+        <% if @posts.any? %>
+          <ul class="list-group">
+            <% @posts.each do |post| %>
+              <li class="list-group-item">
+                <strong>Title:</strong> <%= link_to post.title, post %><br>
+                <strong>Content:</strong> <%= post.content %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>This user hasn't created any posts yet.</p>
+        <% end %>
+      </div>
+
+      <div class="col-md-6">
+        <h2>Comments</h2>
+        <% if @comments.any? %>
+          <ul class="list-group">
+            <% @comments.each do |comment| %>
+              <li class="list-group-item">
+                <strong>Post:</strong> <%= link_to comment.post.title, comment.post %><br>
+                <strong>Comment:</strong> <%= comment.body %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>This user hasn't created any comments yet.</p>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="alert alert-danger" role="alert">
+      User not found
+    </div>
+  <% end %>
+</div>

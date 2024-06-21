@@ -1,0 +1,8 @@
+<h1>Posts</h1>
+
+<% if user_signed_in? %>
+  <%= link_to "New Post" ,new_post_path, class: "btn btn-primary mb-3" %>
+<% end %><div class="row">
+
+  <%= render partial: 'post', collection: @posts %>
+</div>
